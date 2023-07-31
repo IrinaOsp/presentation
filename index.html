@@ -19,19 +19,42 @@
 				<section>
 					<h2>Canvas</h2>
 				</section>
+
 				<section>
+
 					<section>
 						<h2>What is HTML Canvas?</h2>
+					</section>
+
+					<section>
+						<h3>Canvas element is used in: </h3>
+						<ul>
+							<li>Online Drawing and Image Editing Tools</li>
+							<li>Data Visualization - animated charts, graphs</li>
+							<li>Games</li>
+							<li>Online Photo Editors</li>
+							<li>Online Art and Drawing Communities</li>
+							<li>Interactive Websites</li>
+							<li>WebGL Applications</li>
+							<li>Educational Websites and Learning Platforms</li>
+							<li>Music Visualizers</li>
+						</ul>
+					</section>
+					
+					<section>
 						<p>Here are some examples</p>
 					</section>
+
 					<section data-background="https://i.ibb.co/cDWTNFp/Google-maps.gif">
 						<div>
 							<h2 style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">Google maps</h2>
 						</div>
 					</section>
+
 					<section>
-						<h2>Games as ...</h2>
+						<h2>Many games as ...</h2>
 					</section>
+
 					<section>
 						<div>
 							<h4>Google minesweeper game & <br> Google Santa Tracker game</h4>
@@ -39,9 +62,11 @@
 							<img width="400" src="https://i.ibb.co/NyLzPJD/image.png" alt="santatracker">
 						</div>
 					</section>
+
 					<section data-background-iframe="https://iss-sim.spacex.com/">
 						<h3>SpaceX Falcon 9 launch simulator</h3>
 					</section>
+
 					<section>
 						<h2>and many others</h2>
 						<p>
@@ -50,20 +75,26 @@
 							- <a href="https://newdocs.phaser.io/docs/3.60.0">Phaser</a> <span>(HTML5 Game Framework)</span>
 						</p>
 					</section>
+
 				</section>
+
 				<section>
 					<h2>Getting Started with Canvas</h2>
 					<pre><code class="hljs html"><canvas id="myCanvas" width="400" height="200"></canvas>
 					</code></pre>
 				</section>
+
 				<section>
+
 					<section>
 						<h2>Setting up canvas</h2>
 						<pre>
 							<code class="hljs javascript">const canvas = document.getElementById('myCanvas');</code>
 							<code class="hljs javascript">const ctx = canvas.getContext('2d');</code>
+							<code class="hljs javascript">ctx.canvas; // HTMLCanvasElement;</code>
 						</pre>
 					</section>
+
 					<section>
 						<h2>Drawing a Rectangle</h2>
 						<pre>
@@ -71,6 +102,7 @@
 	// Draw a filled rectangle
 	// fillRect(x, y, width, height)
 	ctx.fillStyle = 'green';
+	ctx.rect(50, 50, 100, 75);
 	ctx.fillRect(50, 50, 100, 75);
 
 	// Draw a rectangle with border
@@ -78,17 +110,22 @@
 
 	// Sets the pixels in an area to transparent black rgba(0,0,0,0)
 	ctx.clearRect(50, 50, 30, 30);
+
+	// Draw rounded rectangle
+	roundRect(10, 20, 150, 100, [40]);
 							</code>
 						</pre>
 						<div>
 						</div>
 					</section>
+
 					<section>
 						<h2>Drawing a Line</h2>
 						<pre>
-							<code class="hljs javascript">
-				// Draw a line
+							<code class="hljs javascript">				// Draw a line
 				// moveTo(x, y), lineTo(x, y)
+				// ctx.lineCap = "butt" (def) | "round" | "square";
+				// ctx.lineJoin = "miter" (def) | "round", "bevel";
 				ctx.lineWidth = 10;
 				ctx.beginPath();
 				ctx.moveTo(50, 140);
@@ -97,13 +134,15 @@
 				ctx.closePath();
 				ctx.stroke();
 
-				//Draw a curve line
+				// Draw a curve line
+				// bezierCurveTo() || quadraticCurveTo()
 				ctx.bezierCurveTo(50, 50, 90, 10, 100, 50);
 							</code>
 						</pre>
 						<div>
 						</div>
 					</section>
+
 					<section>
 						<h3>Drawing Arcs & Circles</h3>
 						<pre>
@@ -124,6 +163,7 @@ ctx.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);</code>
 						<div>
 						</div>
 					</section>
+
 					<section>
 						<h2>Making clips</h2>
 						<pre>
@@ -141,6 +181,7 @@ ctx.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);</code>
 						<div>
 						</div>
 					</section>
+
 					<section>
 						<h2>Create Gradients</h2>
 						<pre>
@@ -162,37 +203,117 @@ ctx.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);</code>
 		gradient.addColorStop(1, "green");
 							</code>
 						</pre>
-						<div>
-						</div>
 					</section>
-				</section>
-				<section>
-					<h2>Canvas Animation</h2>
+
 					<section>
-						<h3>Creating an Animation</h3>
+						<h2>Draw a text string</h2>
 						<pre>
-							<code>
-let x = 0;
+							<code class="hljs javascript">
+		// fillText(text, x, y, maxWidth)
+		ctx.font = "50px serif";
+		ctx.textAlign = "center";
+		ctx.textBaseline = "middle";
+		ctx.fillText("Hello", 50, 90);
 
-function draw() {
-	// Clear the canvas
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-	// Draw a moving rectangle
-	ctx.fillStyle = 'red';
-	ctx.fillRect(x, 50, 50, 50);
-
-	// Update the x position for the next frame
-	x += 1;
-
-	// Request the next animation frame
-	requestAnimationFrame(draw);
-}
-
-// Start the animation
-requestAnimationFrame(draw);
 							</code>
 						</pre>
+					</section>
+
+					<section>
+						<h2>Draw an image</h2>
+						<pre><code class="hljs javascript">
+createPattern(image, repetition);
+
+// createImageData(width, height, settings) - creates a new, blank ImageData object
+ctx.drawImage(img, 0, 0, 150, 150);
+ctx.createImageData(100, 100);
+ctx.getImageData(10, 20, 100, 50);
+ctx.putImageData(imageData, 150, 0, 50, 50, 25, 25);
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>CSS properties</h2>
+						<pre><code class="hljs javascript">
+// filter effects such as blurring and grayscaling
+ctx.filter
+// A number between 0.0 (fully transparent) and 1.0 (fully opaque), inclusive
+ctx.globalAlpha
+// sets the type of compositing operation to apply when drawing new shapes
+ctx.globalCompositeOperation
+// Shadows
+ctx.shadowColor = "red";
+ctx.shadowOffsetX = 25;
+ctx.shadowOffsetY = 45;
+ctx.shadowBlur = 10;
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Transformations</h2>
+						<pre><code class="hljs javascript">
+ctx.rotate(angle);
+ctx.translate(x, y);
+ctx.transform(a, b, c, d, e, f);
+ctx.setTransform(a, b, c, d, e, f);
+ctx.scale(x, y);
+
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Change context state</h2>
+						<pre><code class="hljs javascript">
+ctx.reset();
+ctx.resetTransform();
+ctx.save();
+ctx.restore();
+						</code></pre>
+					</section>
+
+				</section>
+				
+				<section>
+					<section>
+						<h2>Canvas Animation</h2>
+					</section>
+					<section>
+						<h3>Basic animation steps to draw a frame:</h3>
+						<ol style="font-size: 20px;">
+							<li><b>Clear the canvas</b> Unless the shapes you'll be drawing fill the complete canvas (for instance a backdrop image), you need to clear any shapes that have been drawn previously. The easiest way to do this is using the clearRect() method.
+							</li>
+							<li>
+								<b>Save the canvas state</b> If you're changing any setting (such as styles, transformations, etc.) which affect the canvas state and you want to make sure the original state is used each time a frame is drawn, you need to save that original state.
+							</li>
+							<li>
+								<b>Draw animated shapes</b> The step where you do the actual frame rendering.
+							</li>
+							<li>
+								<b>Restore the canvas state</b> If you've saved the state, restore it before drawing a new frame.
+							</li>
+						</ol>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Web GL</h2>
+						<pre><code class="javascript">
+const canvas = document.getElementById("myCanvas");
+// contextTypes: "2d", "webgl", "webgl2", "webgpu", "bitmaprenderer"
+const gl = canvas.getContext("webgl");
+						</code></pre>
+					</section>
+
+					<section>
+						<h4>Libraries</h4>
+						<ul style="font-size: large">
+							<li><a href="https://threejs.org/">three.js</a> is an open-source, fully featured 3D WebGL library</li>
+							<li><a href="https://www.babylonjs.com/">Babylon.js</a> is a powerful, simple, and open game and 3D rendering engine packed into a friendly JavaScript framework</li>
+							<li><a href="https://pixijs.com/">Pixi.js</a> is a fast, open-source 2D WebGL renderer</li>
+							<li><a href="https://phaser.io/">Phaser</a> is a fast, free and fun open source framework for Canvas and WebGL powered browser games</li>
+							<li><a href="https://playcanvas.com/">PlayCanvas</a> is an open-source game engine</li>
+						</ul>
 					</section>
 				</section>
 			</div>
