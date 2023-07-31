@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Canvas</h2>
+				</section>
+				<section>
+					<section>
+						<h2>What is HTML Canvas?</h2>
+						<p>Here are some examples</p>
+					</section>
+					<section data-background="https://i.ibb.co/cDWTNFp/Google-maps.gif">
+						<div>
+							<h2 style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">Google maps</h2>
+						</div>
+					</section>
+					<section>
+						<h2>Games as ...</h2>
+					</section>
+					<section>
+						<div>
+							<h4>Google minesweeper game & <br> Google Santa Tracker game</h4>
+							<img width="345" src="https://i.ibb.co/HBB3C6b/b-Eg-VBAg-RRm6p7whyw9m-SGg.png" alt="minesweeper">
+							<img width="400" src="https://i.ibb.co/NyLzPJD/image.png" alt="santatracker">
+						</div>
+					</section>
+					<section data-background-iframe="https://iss-sim.spacex.com/">
+						<h3>SpaceX Falcon 9 launch simulator</h3>
+					</section>
+					<section>
+						<h2>and many others</h2>
+						<p>
+							- <a href="https://sketchpad.app/en/">Sketchpad</a> <span> (online drawing and design tool)</span><br>
+							- <a href="https://vincentgarreau.com/particles.js/">particles.js</a> <span> (JS library for creating interactive particle animations)</span><br>
+							- <a href="https://newdocs.phaser.io/docs/3.60.0">Phaser</a> <span>(HTML5 Game Framework)</span>
+						</p>
+					</section>
+				</section>
+				<section>
+					<h2>Getting Started with Canvas</h2>
+					<pre><code class="hljs html"><canvas id="myCanvas" width="400" height="200"></canvas>
+					</code></pre>
+				</section>
+				<section>
+					<section>
+						<h2>Setting up canvas</h2>
+						<pre>
+							<code class="hljs javascript">const canvas = document.getElementById('myCanvas');</code>
+							<code class="hljs javascript">const ctx = canvas.getContext('2d');</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Drawing a Rectangle</h2>
+						<pre>
+							<code class="hljs javascript">
+	// Draw a filled rectangle
+	// fillRect(x, y, width, height)
+	ctx.fillStyle = 'green';
+	ctx.fillRect(50, 50, 100, 75);
+
+	// Draw a rectangle with border
+	ctx.strokeRect(150, 150, 50, 50);
+
+	// Sets the pixels in an area to transparent black rgba(0,0,0,0)
+	ctx.clearRect(50, 50, 30, 30);
+							</code>
+						</pre>
+						<div>
+						</div>
+					</section>
+					<section>
+						<h2>Drawing a Line</h2>
+						<pre>
+							<code class="hljs javascript">
+				// Draw a line
+				// moveTo(x, y), lineTo(x, y)
+				ctx.lineWidth = 10;
+				ctx.beginPath();
+				ctx.moveTo(50, 140);
+				ctx.lineTo(150, 60);
+				ctx.lineTo(250, 140);
+				ctx.closePath();
+				ctx.stroke();
+
+				//Draw a curve line
+				ctx.bezierCurveTo(50, 50, 90, 10, 100, 50);
+							</code>
+						</pre>
+						<div>
+						</div>
+					</section>
+					<section>
+						<h3>Drawing Arcs & Circles</h3>
+						<pre>
+							<code class="hljs javascript">//Draw a circle
+//ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+ctx.beginPath();
+ctx.arc(75, 75, 50, 0, 2 * Math.PI);
+ctx.stroke();
+
+//Draw a circular arc
+//arcTo(x1, y1, x2, y2, radius)
+ctx.arcTo(100, 100, 300, 150, 50);
+
+//Draw an ellipse
+//ellipse(x, y, radiusX, radiusY, rotation, startAng, endAng, counterclockwise)
+ctx.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);</code>
+						</pre>
+						<div>
+						</div>
+					</section>
+					<section>
+						<h2>Making clips</h2>
+						<pre>
+							<code class="hljs javascript">
+					// Draw clip
+					ctx.beginPath();
+					ctx.arc(100, 75, 50, 0, Math.PI * 2);
+					ctx.clip();
+
+					// Draw stuff that gets clipped
+					ctx.fillStyle = "blue";
+					ctx.fillRect(0, 0, canvas.width, canvas.height);
+							</code>
+						</pre>
+						<div>
+						</div>
+					</section>
+					<section>
+						<h2>Create Gradients</h2>
+						<pre>
+							<code class="hljs javascript">
+		// Draw conic gradient
+		// createConicGradient(startAngle, x, y)
+		ctx.createConicGradient(0, 300, 300);
+
+		// Draw linear gradient
+		// createLinearGradient(startX, startY, endX, endY)
+		ctx.createLinearGradient(100, 100, 400, 400);
+
+		// Draw radial gradient
+		// createRadialGradient(x0, y0, r0, x1, y1, r1)
+		ctx.createRadialGradient(110, 90, 30, 100, 100, 70);
+
+		gradient.addColorStop(0, "pink");
+		gradient.addColorStop(0.9, "white");
+		gradient.addColorStop(1, "green");
+							</code>
+						</pre>
+						<div>
+						</div>
+					</section>
+				</section>
+				<section>
+					<h2>Canvas Animation</h2>
+					<section>
+						<h3>Creating an Animation</h3>
+						<pre>
+							<code>
+let x = 0;
+
+function draw() {
+	// Clear the canvas
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	// Draw a moving rectangle
+	ctx.fillStyle = 'red';
+	ctx.fillRect(x, 50, 50, 50);
+
+	// Update the x position for the next frame
+	x += 1;
+
+	// Request the next animation frame
+	requestAnimationFrame(draw);
+}
+
+// Start the animation
+requestAnimationFrame(draw);
+							</code>
+						</pre>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
